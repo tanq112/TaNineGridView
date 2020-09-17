@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TaNineGridView">
+        <!--分割线宽度-->
+        <attr name="taDividerWidth" format="dimension" />
+    </declare-styleable>
+</resources>
