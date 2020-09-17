@@ -61,13 +61,6 @@ public class TaNineGridView extends ViewGroup {
             int width = (widthSize - getPaddingLeft() - getPaddingRight()) / 2;
             int height = width;
             View childView = getChildAt(0);
-            //if (childView instanceof ImageView) {
-            //    ImageView iv = (ImageView) childView;
-            //    iv.setScaleType(ImageView.ScaleType.FIT_START);
-            //    iv.setAdjustViewBounds(true);
-            //}
-            //childView.measure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
-            //        MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST));
             measureChild(childView, widthMeasureSpec, heightMeasureSpec);
             heightSize = childView.getMeasuredHeight();
             widthSize = childView.getMeasuredWidth() + getPaddingLeft() + getPaddingRight();
