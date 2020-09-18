@@ -21,6 +21,7 @@ public class TaNineGridView extends ViewGroup {
     private List<String> mData = new ArrayList<>();
     private ItemViewEngine mItemViewEngine;
     private int mMaxItemSize = 9; //默认9个
+    private OnClickItemListener mOnClickItemListener;
 
 
     public TaNineGridView(Context context) {
@@ -117,7 +118,17 @@ public class TaNineGridView extends ViewGroup {
         for (int i = 0; i < mData.size(); i++) {
             //最多9个
             if (i < mMaxItemSize) {
-                addView(mItemViewEngine.createView());
+                View view = mItemViewEngine.createView();
+                final int finalI = i;
+                view.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (mOnClickItemListener != null) {
+                            mOnClickItemListener.onClickItem(v, mData.get(finalI), finalI);
+                        }
+                    }
+                });
+                addView(view);
             }
         }
     }
@@ -146,7 +157,15 @@ public class TaNineGridView extends ViewGroup {
         this.mItemViewEngine = itemViewEngine;
     }
 
+    public void setOnClickItemListener(@NonNull OnClickItemListener listener) {
+        this.mOnClickItemListener = listener;
+    }
+
     public static abstract class ItemViewEngine {
         public abstract View createView();
+    }
+
+    public interface OnClickItemListener<T> {
+        void onClickItem(@NonNull View view, T t, int position);
     }
 }
